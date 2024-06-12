@@ -1,31 +1,33 @@
 #include "unistd.h"
 
-void ft_print(char c, int i)
-{
-    while (i > 0)
-    {
-        write(1, &c, 1);
-        --i;
-    }
-}
+#include <unistd.h>
 
-void repeat_alfa(char *str)
+int	main(int ac, char **av)
 {
-    while (*str)
-    {
-        if (*str >= 'a' && *str <= 'z')
-            ft_print(*str, *str + 1 - 'a');
-       else if (*str >= 'A' && *str <= 'Z')
-            ft_print(*str, *str + 1 - 'A');
-        write(1, str, 1);
-        ++str;
-    }
-}
+	int i;
+	int k;
+	char *str;
 
-int main(int ac, char **av)
-{
-    if (ac == 2)
-        repeat_alfa(av[1]);
-    write(1, "\n", 1);
-    return (0);
+	i = 0;
+	k = 1;
+	if (ac ==2)
+	{
+		str = av[1];
+		while (str[i] != '\0')
+		{
+			k = 1;
+			if (str[i] >= 'A' && str[i] <= 'Z')
+				k = str[i] - 64;
+			if (str[i] >= 'a' && str[i] <= 'z')
+				k = str[i] - 96;
+			while (k >= 1)
+			{
+				write(1, &str[i], 1);
+				k--;
+			}
+			i++;
+		}
+	}
+	write(1, "\n", 1);
+	return (0);
 }

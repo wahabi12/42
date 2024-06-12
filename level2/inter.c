@@ -1,37 +1,42 @@
-#include <unistd.h> 
+#include <unistd.h>
 
-int has_char(char *str, char c)
+int	main(int ac, char **av)
 {
-    while (*str)
-    {
-        if (*str == c)
-            return 1;
-        str++;
-    }
-    return 0;
-}
+	int	i;
+	int k;
+	int l;
+	char *s1;
+	char *s2;
 
-void inter(char *str1, char *str2)
-{
-    char printed[128] = {0};
-    int i = 0;                
-
-    while (*str1)
-    {
-        if (has_char(str2, *str1) && !has_char(printed, *str1))
-        {
-            write(1, str1, 1);   
-            printed[i] = *str1; 
-            i++;
-        }
-        str1++;
-    }
-}
-
-
-int main(int argc, char *argv[])
-{
-    if (argc == 3)
-        inter(argv[1], argv[2]);
-    write(1, "\n", 1);
+	i = 0;
+	l = 0;
+	if (ac == 3)
+	{
+		s1 = av[1];
+		s2 = av[2];
+		while (s1[i] != '\0')
+		{
+			k = 0;
+			while (s2[k] != '\0')
+			{
+				if(s1[i] == s2[k])
+				{ 
+					l = 0;
+					while (s1[l] != s1[i])
+						l++;
+					if (l == i)
+					{
+						l = 0;
+						while (s2[l] != s2[k])
+							l++;
+						if (l == k)
+							write(1, &s1[i], 1);
+					}
+				}
+				k++;
+			}
+			i++;
+		}
+	}
+	write(1, "\n", 1);
 }

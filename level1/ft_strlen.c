@@ -8,13 +8,3 @@ int	ft_strlen(char *str)
 		i++;
 	return(i);
 }
-
-int main()
-{
-	// char src[40];
-	// char dest[100];
-
-	int len = ft_strlen("This is latifat");
-	// ft_strcpy(dest, src);
-	printf("Final copied string : %d\n", len);
-}
